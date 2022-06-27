@@ -12,6 +12,8 @@ import DetailScreen from './DetailScreen';
 import MenuScreen from './MenuScreen';
 import GuessNumber from './GuessNumber';
 import RPC from './RPC';
+import GuessYourNumber from './GuessYourNumber';
+import GuessMyNumber from './GuessMyNumber';
 
 
 const Tab = createBottomTabNavigator();
@@ -39,6 +41,8 @@ export default function App() {
         <Stack.Screen name="Details" component={DetailScreen} />
         <Stack.Screen name="GuessNumber" component={GuessNumber} options={{title: "GuessMyNumber"}} />
         <Stack.Screen name="RPC" component={RPC} options={{title: "Rock Paper Cissors"}} />
+        <Stack.Screen name="GuessYourNumber" component={GuessYourNumber} options={{title: "GuessYourNumber"}} />
+        <Stack.Screen name="GuessMyNumber" component={GuessMyNumber} options={{title: "GuessMyNumber"}} />
       </Stack.Navigator>
     </NavigationContainer>
   );
