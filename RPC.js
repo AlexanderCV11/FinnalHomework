@@ -1,33 +1,68 @@
-import './RPC.css';
-import './Game.js';
+import React, { useState } from 'react';
+import Game from './Game.js';
+import Resultado from './Resultado';
+import { View } from 'react-native';
+import styles from './styles';
+
 
 function RPS() {
+
+  const [eleccionJugador, setEleccionJugador] = useState({});
+  const [eleccionMaquina, setEleccionMaquina] = useState({});
+
+   
+const opciones = [
+  {
+    eleccion: "piedra",
+    derrota:"tijera"
+  },
+
+  {
+    eleccion: "papel",
+    derrota:"piedra"
+  },
+  
+  {
+    eleccion: "tijera",
+    derrota:"papel"
+  }
+]
+
+const elegirOpcion = (event) => {
+  const jugador = opciones.find(e => e.eleccion === event.target.textContent);
+  setEleccionJugador(jugador);
+  eleccionRival();
+}
+
+const eleccionRival = () => {
+  const eleccion = opciones[Math.floor(Math.random() * opciones.length)];
+
+  setEleccionMaquina(eleccion);
+}
+
   return (
     <div className="App">
-      <h1>
-          Bienvenido al piedra papel o tijera 
-      </h1>
-        <img id="user"></img>
-        <img id="random"></img>
-      <header className="App-header">
+      <Resultado jugador = {eleccionJugador} maquina = {eleccionMaquina}
+      />
+      <main>
+        <section>
+          <div className = "jugador">Jugador</div>
+          <div className = "eleccion">{eleccionJugador.eleccion}</div>
+        </section>
+        <section>
+          <div className = "maquina">Maquina</div>
+          <div className = "eleccion">{eleccionMaquina.eleccion}</div>
+        </section>
+      </main>
 
-        
-
-        <div id="resultado">
-          Elije una opcion
-        </div>
-        
-        <button className='boton' id='piedra'>
-          <img src={'file:///C:/Users/Alexander%20Corral/OneDrive/Documentos/reactP/piedrapapeltijera/src/piedra.png'}  className='imagen'/>
-        </button>
-        <button className='boton' id='papel'>
-          <img src={'file:///C:/Users/Alexander%20Corral/OneDrive/Documentos/reactP/piedrapapeltijera/src/papel.png'}  className='imagen'/>  
-        </button>
-        <button className='boton' id='tijera'>
-          <img src={'file:///C:/Users/Alexander%20Corral/OneDrive/Documentos/reactP/piedrapapeltijera/src/tijera.png'}  className='imagen'/>
-        </button>
-        
-      </header>
+      <View style={styles.opciones}>
+        {
+          opciones.map((e, index) => <Game
+          elegir = {elegirOpcion}
+            valor = {opciones[index]}
+          />)
+        }
+      </View>
     </div>
   );
 }

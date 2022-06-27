@@ -37,8 +37,8 @@ export default function App() {
           options={{ headerShown: false }}
         />
         <Stack.Screen name="Details" component={DetailScreen} />
-        <Stack.Screen name="GuessNumber" component={GuessNumber} options={{title: "Tarea"}} />
-        <Stack.Screen name="RPC" component={RPC} options={{title: "Tarea"}} />
+        <Stack.Screen name="GuessNumber" component={GuessNumber} options={{title: "GuessMyNumber"}} />
+        <Stack.Screen name="RPC" component={RPC} options={{title: "Rock Paper Cissors"}} />
       </Stack.Navigator>
     </NavigationContainer>
   );
